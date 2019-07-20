@@ -1,5 +1,7 @@
-package com.derongan.minecraft.guiy.gui;
+package com.derongan.minecraft.guiy;
 
+import com.derongan.minecraft.guiy.gui.ClickEvent;
+import com.derongan.minecraft.guiy.gui.GUIHolder;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -7,6 +9,8 @@ import org.bukkit.inventory.InventoryHolder;
 
 /**
  * Listener that listens for inventory click events and delegates to the {@link GUIHolder} if appropriate.
+ * <p>
+ * This can either be registered by your plugin, or you can simply do the same check in your own listener.
  */
 public class GUIListener implements Listener {
     public GUIListener() {
