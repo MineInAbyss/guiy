@@ -7,12 +7,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.InventoryHolder;
 
+import javax.inject.Inject;
+
 /**
  * Listener that listens for inventory click events and delegates to the {@link GUIHolder} if appropriate.
  * <p>
  * This can either be registered by your plugin, or you can simply do the same check in your own listener.
  */
 public class GUIListener implements Listener {
+    @Inject
     public GUIListener() {
     }
 
