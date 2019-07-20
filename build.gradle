@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+    maven {
+        name = 'dre-repo'
+        url = 'https://erethon.de/repo/'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'de.erethon', name: 'headlib', version: '3.0.1'
+    compile 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.8.0'
+    compile "com.google.auto.value:auto-value-annotations:1.6.3"
+    compileOnly 'org.jetbrains:annotations:17.0.0'
+    annotationProcessor "com.google.auto.value:auto-value:1.6.3"
+}
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        filter ReplaceTokens, tokens: [version: version]
+    }
+}
