@@ -21,6 +21,9 @@ public class GUIListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent inventoryClickEvent) {
+        if (inventoryClickEvent.getClickedInventory() == null) {
+            return;
+        }
         InventoryHolder holder = inventoryClickEvent.getClickedInventory().getHolder();
         if (holder instanceof GUIHolder) {
             inventoryClickEvent.setCancelled(true);
