@@ -113,8 +113,8 @@ dependencies {
 ```
 
 ## Advanced - Protobuf Support
-This is probably very specific to the problem I was solving when I made Guity, 
-but guity supports Protocol buffer inputs out of the box. 
+This is probably very specific to the problem I was solving when I made Guiy, 
+but Guiy supports Protocol buffer inputs out of the box. 
 
 Say we have the following protocol buffer definition:
 
