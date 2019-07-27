@@ -9,14 +9,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
-public class GUIHolder implements InventoryHolder {
+public class GuiHolder implements InventoryHolder {
     private Inventory inventory;
     private int numRows;
 
     private Element initial;
     private final Plugin plugin;
 
-    public GUIHolder(int numRows, String title, Element initial, Plugin plugin) {
+    public GuiHolder(int numRows, String title, Element initial, Plugin plugin) {
         this.numRows = numRows;
         this.initial = initial;
         this.plugin = plugin;
@@ -24,7 +24,7 @@ public class GUIHolder implements InventoryHolder {
         inventory = Bukkit.createInventory(this, 9 * numRows, title);
     }
 
-    public GUIHolder(int numRows, String title, Plugin plugin) {
+    public GuiHolder(int numRows, String title, Plugin plugin) {
         this.numRows = numRows;
         this.initial = new Layout();
         this.plugin = plugin;
