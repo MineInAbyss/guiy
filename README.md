@@ -144,3 +144,8 @@ thing.setSubmitAction(newThing -> {
     // newThing is a message of type Thing.
 });
 ```
+
+## Thanks
+
+Many thanks to Daniel Saukel for [Headlib](https://github.com/DRE2N/HeadLib), which 
+makes life so much easier.
