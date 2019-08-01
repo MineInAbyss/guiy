@@ -73,6 +73,23 @@ public class FillableElement implements Element {
     }
 
     /**
+     * Removes all references to a specific element from the contents of the elements grid.
+     *
+     * @param element The element to be removed.
+     */
+    public void removeElement(Element element) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (elements[x][y].equals(element)) {
+                    elements[x][y] = null;
+                }
+            }
+        }
+    }
+
+    //TODO maybe a method to remove spacing between elements? (i.e. [element1, null, element2] becomes [element1, element2, null])
+
+    /**
      * Checks if there is an element at a specific position.
      *
      * @param x The x coordinate within this element.
@@ -105,7 +122,6 @@ public class FillableElement implements Element {
             }
         }
     }
-
 
     /**
      * Calls contained elements onclick at the appropriate location.
