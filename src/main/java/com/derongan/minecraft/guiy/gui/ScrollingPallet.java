@@ -58,6 +58,15 @@ public class ScrollingPallet implements Element {
         tools.add(cell);
     }
 
+    /**
+     * Removes a cell from the pallet.
+     *
+     * @param cell The cell to remove.
+     */
+    public void removeTool(Element cell) {
+        tools.remove(cell);
+    }
+
     @Override
     public void onClick(ClickEvent clickEvent) {
         if (clickEvent.getX() == 0) {
@@ -90,5 +99,12 @@ public class ScrollingPallet implements Element {
         } else {
             return Optional.of(tools.get(locationInTools));
         }
+    }
+
+    /**
+     * Remove all elements from this element.
+     */
+    public void clear() {
+        tools.clear();
     }
 }
