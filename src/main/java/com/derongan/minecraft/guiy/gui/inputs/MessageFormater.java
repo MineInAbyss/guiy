@@ -37,7 +37,7 @@ public final class MessageFormater {
                 .getFields()
                 .stream()
                 .flatMap(field -> {
-                    String prefix = ChatColor.RESET + "" + ChatColor.RED + "" + ChatColor.BOLD + field.getName() + ChatColor.RESET + "" + ChatColor.WHITE + " : ";
+                    String prefix = ChatColor.RESET + "" + ChatColor.RED + field.getName() + ChatColor.RESET + "" + ChatColor.WHITE + " : ";
 
                     if (field.getType() == Descriptors.FieldDescriptor.Type.MESSAGE) {
                         Message indented = (Message) message.getField(field);

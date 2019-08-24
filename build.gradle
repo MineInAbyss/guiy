@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'idea'
+    id "maven"
 }
 
 sourceCompatibility = 1.8
