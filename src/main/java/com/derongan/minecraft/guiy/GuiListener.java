@@ -5,6 +5,7 @@ import com.derongan.minecraft.guiy.gui.GuiHolder;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.Plugin;
 
@@ -28,10 +29,21 @@ public class GuiListener implements Listener {
         if (inventoryClickEvent.getClickedInventory() == null) {
             return;
         }
-        InventoryHolder holder = inventoryClickEvent.getClickedInventory().getHolder();
-        if (holder instanceof GuiHolder && ((GuiHolder) holder).getPlugin() == plugin) {
+        InventoryHolder holder = inventoryClickEvent.getInventory().getHolder();
+        if (isGuiy(holder)) {
             inventoryClickEvent.setCancelled(true);
-            ((GuiHolder) holder).onClick(ClickEvent.createClickEvent(inventoryClickEvent));
+            if (isGuiy(inventoryClickEvent.getClickedInventory().getHolder()))
+                ((GuiHolder) holder).onClick(ClickEvent.createClickEvent(inventoryClickEvent));
         }
+    }
+
+    @EventHandler
+    public void onInventoryDrag(InventoryDragEvent inventoryDragEvent) {
+        InventoryHolder holder = inventoryDragEvent.getInventory().getHolder();
+        if (isGuiy(holder)) inventoryDragEvent.setCancelled(true);
+    }
+
+    private boolean isGuiy(InventoryHolder holder) { //FIXME holder isn't an instance of GuiHolder after a plugin reload so no clicks happen
+        return holder instanceof GuiHolder && ((GuiHolder) holder).getPlugin() == plugin;
     }
 }
