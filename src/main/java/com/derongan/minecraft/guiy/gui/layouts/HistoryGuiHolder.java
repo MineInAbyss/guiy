@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryGuiHolder extends GuiHolder {
-    protected Player player;
+    private Player player;
     private List<Layout> history = new ArrayList<>();
     private ClickableElement back;
 
@@ -40,5 +40,11 @@ public class HistoryGuiHolder extends GuiHolder {
         history.remove(history.size() - 1);
 
         setElement(previous);
+    }
+
+    @Override
+    public void show(Player player) {
+        super.show(player);
+        this.player = player;
     }
 }
