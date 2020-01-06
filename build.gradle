@@ -8,7 +8,6 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
     }
 }
 
@@ -19,18 +18,9 @@ plugins {
 }
 
 //Stops errors when a parent project defines the version being used for a plugin like kotlin
-ext.addPlugin = { String pluginId ->
-    final hasPlugin = project.getPlugins().hasPlugin(pluginId)
-    if (hasPlugin) {
-        final Plugin plugin = project.getPlugins().getPlugin(pluginId)
-        println 'Plugin already applied - version ' + plugin.properties['kotlinPluginVersion']
-    } else {
-        apply plugin: pluginId
-    }
-}
+ext.addPlugin = { String pluginId -> if (!project.getPlugins().hasPlugin(pluginId)) apply plugin: pluginId }
 
 addPlugin('org.jetbrains.kotlin.jvm')
-addPlugin('com.github.johnrengelman.shadow')
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -86,15 +76,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
-shadowJar {
-    getArchiveClassifier().set(null)
-    dependencies {
-        include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
-        include(dependency('de.erethon:headlib:3.0.2'))
-    }
-}
-build.dependsOn shadowJar
-
 import org.apache.tools.ant.filters.ReplaceTokens
 
 processResources {
@@ -112,9 +93,4 @@ compileTestKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-}
-
-//this may be needed for jitpack
-artifacts {
-    archives shadowJar
 }
