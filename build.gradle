@@ -66,7 +66,7 @@ publishing {
 dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'de.erethon:headlib:3.0.2'
-    implementation 'org.spigotmc:spigot-api:1.15-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.15-R0.1-SNAPSHOT'
     implementation 'com.google.protobuf:protobuf-java:3.8.0'
     implementation 'com.google.auto.value:auto-value-annotations:1.6.3'
     implementation 'com.google.dagger:dagger:2.+'
