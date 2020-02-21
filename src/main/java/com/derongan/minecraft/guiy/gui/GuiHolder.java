@@ -9,6 +9,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
+/**
+ * An {@link InventoryHolder} with extra functionality for rendering Guiy Elements and Layouts
+ */
 public class GuiHolder implements InventoryHolder {
     private Inventory inventory;
     private int numRows;

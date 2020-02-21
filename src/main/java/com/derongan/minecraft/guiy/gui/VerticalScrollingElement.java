@@ -4,7 +4,7 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * Decorator that adds a vertical scroll bar to an item. The scrollbar is added to the right of the element, and
- * increases its width by 1.
+ * increases its getWidth() by 1.
  * <p>
  * Note that currently the fixed height of this element only determines the clickable region, and where the scroll
  * buttons are shown. Extra elements will spill over to fill up the chest to the bottom.
@@ -42,8 +42,7 @@ public class VerticalScrollingElement implements Element {
     @Override
     public void onClick(ClickEvent clickEvent) {
         if (clickEvent.getX() == getSize().getWidth() - 1 && clickEvent.getY() == height - 1 && scrollFactor + height - 1 < wrapped
-                .getSize()
-                .getHeight()) {
+                .getSize().getHeight()) {
             scrollFactor++;
         } else if (clickEvent.getX() == getSize().getWidth() - 1 && clickEvent.getY() == 0 && scrollFactor != 0) {
             scrollFactor--;

@@ -1,8 +1,11 @@
 package com.derongan.minecraft.guiy.gui
 
+import com.derongan.minecraft.guiy.kotlin_dls.GuiyMarker
+
 /**
  * Interface shared by all GUI elements.
  */
+@GuiyMarker
 interface Element {
     /**
      * Get the size of the element.

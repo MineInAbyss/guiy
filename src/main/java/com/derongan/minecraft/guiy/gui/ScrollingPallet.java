@@ -1,6 +1,7 @@
 package com.derongan.minecraft.guiy.gui;
 
 import de.erethon.headlib.HeadLib;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import static com.google.common.base.Preconditions.checkArgument;
  * A pallet that can hold a number of elements (referred to as tools). It allows cyclic scrolling left and right. It is
  * always one slot high. Tools are normal Elements, and define their own behaviour.
  */
-public class ScrollingPallet implements Element {
+public class ScrollingPallet implements Element, ListContainable {
     private final int width;
     private final Layout innerLayout;
     private List<Element> tools = new ArrayList<>();
@@ -29,8 +30,8 @@ public class ScrollingPallet implements Element {
         this.width = width;
         this.innerLayout = new Layout();
 
-        innerLayout.addElement(0, 0, Cell.forItemStack(HeadLib.WOODEN_ARROW_LEFT.toItemStack("Left")));
-        innerLayout.addElement(width - 1, 0, Cell.forItemStack(HeadLib.WOODEN_ARROW_RIGHT.toItemStack("Right")));
+        innerLayout.setElement(0, 0, Cell.forItemStack(HeadLib.WOODEN_ARROW_LEFT.toItemStack("Left")));
+        innerLayout.setElement(width - 1, 0, Cell.forItemStack(HeadLib.WOODEN_ARROW_RIGHT.toItemStack("Right")));
     }
 
     @Override
@@ -54,8 +55,17 @@ public class ScrollingPallet implements Element {
      *
      * @param cell The cell to add.
      */
-    public void addTool(Element cell) {
+    @Override
+    public void addElement(@NotNull Element cell) {
         tools.add(cell);
+    }
+
+    /**
+     * Adds a list of cells with the logic of addElement.
+     */
+    @Override
+    public void addAll(List<? extends Element> elements) {
+        elements.forEach(this::addElement);
     }
 
     /**
@@ -63,7 +73,8 @@ public class ScrollingPallet implements Element {
      *
      * @param cell The cell to remove.
      */
-    public void removeTool(Element cell) {
+    @Override
+    public void removeElement(Element cell) {
         tools.remove(cell);
     }
 

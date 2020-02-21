@@ -63,10 +63,8 @@ dependencies {
     implementation 'de.erethon:headlib:3.0.2'
     compileOnly 'org.spigotmc:spigot-api:1.15-R0.1-SNAPSHOT'
     implementation 'com.google.protobuf:protobuf-java:3.8.0'
-    implementation 'com.google.auto.value:auto-value-annotations:1.6.3'
     implementation 'com.google.dagger:dagger:2.+'
     compileOnly 'org.jetbrains:annotations:17.0.0'
-    annotationProcessor 'com.google.auto.value:auto-value:1.6.3'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.+'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
