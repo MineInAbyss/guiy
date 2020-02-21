@@ -1,6 +1,5 @@
 package com.derongan.minecraft.guiy.gui;
 
-import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -144,8 +143,6 @@ public class FillableElement implements Element, ListContainable, GridContainabl
      */
     @Override
     public void onClick(ClickEvent clickEvent) {
-        Bukkit.broadcastMessage(elements.length + "");
-        Bukkit.broadcastMessage(clickEvent.getX() + " " + clickEvent.getY());
         Element element = elements[clickEvent.getX()][clickEvent.getY()];
         if (element != null) {
             element.onClick(ClickEvent.offsetClickEvent(clickEvent, clickEvent.getX(), clickEvent.getY()));
