@@ -1,6 +1,6 @@
 package com.derongan.minecraft.guiy.gui
 
-import com.derongan.minecraft.guiy.kotlin_dls.GuiyMarker
+import com.derongan.minecraft.guiy.kotlin_dsl.GuiyMarker
 
 /**
  * Interface shared by all GUI elements.

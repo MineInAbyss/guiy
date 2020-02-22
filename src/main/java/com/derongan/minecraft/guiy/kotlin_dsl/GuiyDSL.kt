@@ -1,4 +1,4 @@
-package com.derongan.minecraft.guiy.kotlin_dls
+package com.derongan.minecraft.guiy.kotlin_dsl
 
 import com.derongan.minecraft.guiy.gui.*
 import com.derongan.minecraft.guiy.gui.layouts.HistoryGuiHolder
