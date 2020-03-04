@@ -2,3 +2,4 @@ guiy.iml
 .gradle/
 .idea/
 build/
+out/

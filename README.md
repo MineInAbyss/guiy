@@ -1,3 +1,5 @@
+![](https://github.com/MineInAbyss/guiy/workflows/Java%20CI/badge.svg)
+
 ![](guiy.gif)
 
 # Guiy
