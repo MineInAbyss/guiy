@@ -1,11 +1,15 @@
 plugins {
     id 'java'
     id 'idea'
-    id "maven"
+    id "maven-publish"
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+if(project.hasProperty("snapshot") && snapshot.toBoolean() != false) {
+    version += "-SNAPSHOT"
+}
 
 repositories {
     mavenCentral()
@@ -20,6 +24,24 @@ repositories {
     maven {
         name = 'dre-repo'
         url = 'https://erethon.de/repo/'
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/MineInAbyss/guiy")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
     }
 }
 
