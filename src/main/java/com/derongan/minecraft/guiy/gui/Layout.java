@@ -11,7 +11,7 @@ import java.util.stream.Stream;
  * An element thats purpose is to contain other elements at specific locations. It forwards any clicks to
  * <em>any</em> element that claims to be in an inventory slot, based on its position and size.
  */
-public class Layout implements Element {
+public class Layout implements Element, GridContainable {
     private Map<Pair<Integer>, Element> elements;
 
     public Layout() {
@@ -27,7 +27,7 @@ public class Layout implements Element {
      * @param y Y coordinate to add the element at.
      * @param e The element ot add.
      */
-    public void addElement(int x, int y, Element e) {
+    public void setElement(int x, int y, Element e) {
         elements.put(Pair.create(x, y), e);
     }
 
@@ -43,26 +43,26 @@ public class Layout implements Element {
 
     @Override
     public void onClick(ClickEvent clickEvent) {
-        findEffectedElements(clickEvent.getX(), clickEvent.getY())
+        findAffectedElements(clickEvent.getX(), clickEvent.getY())
                 .forEach(child -> child.getValue()
                         .onClick(ClickEvent.offsetClickEvent(clickEvent, child.getKey().getFirst(), child.getKey()
                                 .getSecond())));
     }
 
     @NotNull
-    private Stream<Map.Entry<Pair<Integer>, Element>> findEffectedElements(int x, int y) {
+    private Stream<Map.Entry<Pair<Integer>, Element>> findAffectedElements(int x, int y) {
         return elements.entrySet()
                 .stream()
                 .filter(child -> {
                     Pair<Integer> coords = child.getKey();
                     Size size = child.getValue().getSize();
 
-                    int xl = coords.getFirst();
-                    int xr = coords.getFirst() + size.getWidth() - 1;
-                    int yt = coords.getSecond();
-                    int yb = coords.getSecond() + size.getHeight() - 1;
+                    int xMin = coords.getFirst();
+                    int xMax = coords.getFirst() + size.getWidth() - 1;
+                    int yMin = coords.getSecond();
+                    int yMax = coords.getSecond() + size.getHeight() - 1;
 
-                    return x <= xr && x >= xl && y <= yb && y >= yt;
+                    return x <= xMax && x >= xMin && y <= yMax && y >= yMin;
                 });
     }
 
@@ -83,7 +83,7 @@ public class Layout implements Element {
             Size size = entry.getValue().getSize();
 
             width = Math.max(width, loc.getFirst() + size.getWidth());
-            height = Math.max(height, loc.getSecond() + size.getHeight());
+            height = Math.max(height, loc.getSecond() + size.getWidth());
         }
 
         return Size.create(width, height);
@@ -92,6 +92,6 @@ public class Layout implements Element {
 
     @Override
     public String toString() {
-        return String.format("Layout(%dx%d)", getSize().getHeight(), getSize().getWidth());
+        return String.format("Layout(%dx%d)", getSize().getWidth(), getSize().getWidth());
     }
 }

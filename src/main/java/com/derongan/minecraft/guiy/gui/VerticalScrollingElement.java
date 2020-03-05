@@ -42,8 +42,7 @@ public class VerticalScrollingElement implements Element {
     @Override
     public void onClick(ClickEvent clickEvent) {
         if (clickEvent.getX() == getSize().getWidth() - 1 && clickEvent.getY() == height - 1 && scrollFactor + height - 1 < wrapped
-                .getSize()
-                .getHeight()) {
+                .getSize().getHeight()) {
             scrollFactor++;
         } else if (clickEvent.getX() == getSize().getWidth() - 1 && clickEvent.getY() == 0 && scrollFactor != 0) {
             scrollFactor--;

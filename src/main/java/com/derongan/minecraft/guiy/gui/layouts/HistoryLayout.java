@@ -19,7 +19,7 @@ public class HistoryLayout extends Layout {
 
     public void addBackButton() {
         holder.addBackButton(this);
-        addElement(8, 5, holder.getBackButton());
+        setElement(8, 5, holder.getBackButton());
     }
 
     public void addBackButton(Layout otherLayout) {

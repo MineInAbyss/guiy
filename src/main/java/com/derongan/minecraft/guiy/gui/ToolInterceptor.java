@@ -3,16 +3,16 @@ package com.derongan.minecraft.guiy.gui;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.tags.CustomItemTagContainer;
-import org.bukkit.inventory.meta.tags.ItemTagType;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
 import static com.derongan.minecraft.guiy.GuiyKeys.TYPE_KEY;
-
 
 public class ToolInterceptor implements Element {
     public static final String TOOL_TYPE_KEY = "tool_type";
@@ -27,13 +27,14 @@ public class ToolInterceptor implements Element {
         this.plugin = plugin;
     }
 
+    @NotNull
     @Override
     public Size getSize() {
         return wrapped.getSize();
     }
 
     @Override
-    public void draw(GuiRenderer guiRenderer) {
+    public void draw(@NotNull GuiRenderer guiRenderer) {
         wrapped.draw(guiRenderer);
     }
 
@@ -45,12 +46,11 @@ public class ToolInterceptor implements Element {
     public void onClick(ClickEvent clickEvent) {
         ItemStack itemOnCursor = clickEvent.getItemOnCursor();
         if (itemOnCursor.hasItemMeta()) {
-            CustomItemTagContainer customTagContainer = itemOnCursor.getItemMeta().getCustomTagContainer();
-            if (customTagContainer
-                    .hasCustomTag(new NamespacedKey(plugin, TYPE_KEY), ItemTagType.STRING)) {
+            if(itemOnCursor.getItemMeta() == null) return;
 
-                if (customTagContainer.getCustomTag(new NamespacedKey(plugin, TYPE_KEY), ItemTagType.STRING)
-                        .equals(TOOL_VALUE)) {
+            PersistentDataContainer customTagContainer = itemOnCursor.getItemMeta().getPersistentDataContainer();
+            if (customTagContainer.has(new NamespacedKey(plugin, TYPE_KEY), PersistentDataType.STRING)) {
+                if (customTagContainer.get(new NamespacedKey(plugin, TYPE_KEY), PersistentDataType.STRING).equals(TOOL_VALUE)) {
 
                     Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                         clickEvent.getRawEvent().getWhoClicked().setItemOnCursor(null);
@@ -58,7 +58,7 @@ public class ToolInterceptor implements Element {
 
                     Element element = wrapped.getElement(clickEvent.getX(), clickEvent.getY());
 
-                    String toolType = customTagContainer.getCustomTag(new NamespacedKey(plugin, TOOL_TYPE_KEY), ItemTagType.STRING);
+                    String toolType = customTagContainer.get(new NamespacedKey(plugin, TOOL_TYPE_KEY), PersistentDataType.STRING);
 
                     handlerMap.getOrDefault(toolType, (click, elem) -> wrapped.onClick(click))
                             .accept(clickEvent, element);

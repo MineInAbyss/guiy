@@ -64,7 +64,7 @@ public class ProtobufInput<E extends Message> implements Element, Input<E> {
 
         base = new Layout();
 
-        base.addElement(0, 0, swappableElement);
+        base.setElement(0, 0, swappableElement);
 
         protoDescriptor.getFields().forEach(fieldDescriptor -> {
             ItemStack itemStack;
