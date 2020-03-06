@@ -5,18 +5,17 @@ import com.derongan.minecraft.guiy.gui.Element;
 import com.derongan.minecraft.guiy.gui.GuiRenderer;
 import com.derongan.minecraft.guiy.gui.Size;
 import de.erethon.headlib.HeadLib;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Input that produces a numeric result. This input is always a 9x5 element.
  * The result is always a Double.
  */
 public class NumberInput implements Element, Input<Double> {
-    private ArrayList<String> inputs;
+    private final ArrayList<String> inputs;
     private Consumer<Double> consumer;
 
     public NumberInput() {

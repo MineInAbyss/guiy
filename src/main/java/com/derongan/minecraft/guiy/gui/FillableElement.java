@@ -1,8 +1,7 @@
 package com.derongan.minecraft.guiy.gui;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Element that supports having Elements added to it dynamically.
@@ -11,7 +10,7 @@ public class FillableElement implements Element, ListContainable, GridContainabl
     private final int height;
     private final int width;
 
-    private Element[][] elements;
+    private final Element[][] elements;
 
     // TODO make this work with fixed size
     public FillableElement(int height, int width) {

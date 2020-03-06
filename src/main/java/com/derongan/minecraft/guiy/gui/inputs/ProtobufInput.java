@@ -1,20 +1,28 @@
 package com.derongan.minecraft.guiy.gui.inputs;
 
-import com.derongan.minecraft.guiy.gui.*;
+import static com.google.common.collect.ImmutableList.toImmutableList;
+
+import com.derongan.minecraft.guiy.gui.Cell;
+import com.derongan.minecraft.guiy.gui.ClickEvent;
+import com.derongan.minecraft.guiy.gui.ClickableElement;
+import com.derongan.minecraft.guiy.gui.Element;
+import com.derongan.minecraft.guiy.gui.FillableElement;
+import com.derongan.minecraft.guiy.gui.GuiRenderer;
+import com.derongan.minecraft.guiy.gui.Layout;
+import com.derongan.minecraft.guiy.gui.Size;
+import com.derongan.minecraft.guiy.gui.SwappableElement;
+import com.derongan.minecraft.guiy.gui.VerticalScrollingElement;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.protobuf.Descriptors;
 import com.google.protobuf.Message;
 import de.erethon.headlib.HeadLib;
-import org.bukkit.ChatColor;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-
-import static com.google.common.collect.ImmutableList.toImmutableList;
+import org.bukkit.ChatColor;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 
 /**
@@ -27,12 +35,12 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
 public class ProtobufInput<E extends Message> implements Element, Input<E> {
     private final Message.Builder builder;
     private final Map<String, List<String>> stringValueProviders;
-    private Descriptors.Descriptor protoDescriptor;
+    private final Descriptors.Descriptor protoDescriptor;
 
-    private SwappableElement swappableElement;
-    private FillableElement selectFieldFillable;
+    private final SwappableElement swappableElement;
+    private final FillableElement selectFieldFillable;
 
-    private Layout base;
+    private final Layout base;
     private Consumer<E> consumer = a -> {
     };
 
