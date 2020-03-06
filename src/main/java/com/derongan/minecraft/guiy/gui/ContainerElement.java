@@ -1,5 +1,8 @@
 package com.derongan.minecraft.guiy.gui;
 
+import static com.derongan.minecraft.guiy.GuiyKeys.TYPE_KEY;
+
+import java.util.Set;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -7,17 +10,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.tags.ItemTagType;
 import org.bukkit.plugin.Plugin;
 
-import java.util.Set;
-
-import static com.derongan.minecraft.guiy.GuiyKeys.TYPE_KEY;
-
 
 /**
  * Element that acts like a normal inventory, but only accepts items with a certain TYPE_KEY NBT value.
  */
 public class ContainerElement extends FillableElement {
     private final Set<String> allowedKeys;
-    private Plugin plugin;
+    private final Plugin plugin;
 
     /**
      * Constructs a {@link ContainerElement}. The {@code allowedKeys} set contains a set of string values. Items will

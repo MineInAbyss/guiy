@@ -9,7 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
  * Basic {@link Element} of the UI. Simply renders a specific {@link ItemStack}.
  */
 public class Cell implements Element {
-    public ItemStack itemStack;
+    public final ItemStack itemStack;
     private boolean dirty = true;
 
     private Cell(ItemStack itemStack) {

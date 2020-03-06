@@ -1,18 +1,17 @@
 package com.derongan.minecraft.guiy.gui;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * An element thats purpose is to contain other elements at specific locations. It forwards any clicks to
  * <em>any</em> element that claims to be in an inventory slot, based on its position and size.
  */
 public class Layout implements Element, GridContainable {
-    private Map<Pair<Integer>, Element> elements;
+    private final Map<Pair<Integer>, Element> elements;
 
     public Layout() {
         elements = new HashMap<>();

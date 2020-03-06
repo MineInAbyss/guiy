@@ -11,9 +11,9 @@ import org.bukkit.inventory.ItemStack;
  */
 public class VerticalScrollingElement implements Element {
     private final int height;
-    private Element wrapped;
+    private final Element wrapped;
     private int scrollFactor = 0;
-    private ItemStack scrollUpItemStack;
+    private final ItemStack scrollUpItemStack;
     private final ItemStack scrollDownItemStack;
 
     public VerticalScrollingElement(int height,

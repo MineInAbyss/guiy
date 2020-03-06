@@ -1,5 +1,10 @@
 package com.derongan.minecraft.guiy.gui;
 
+import static com.derongan.minecraft.guiy.GuiyKeys.TYPE_KEY;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.BiConsumer;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -8,19 +13,13 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.BiConsumer;
-
-import static com.derongan.minecraft.guiy.GuiyKeys.TYPE_KEY;
-
 public class ToolInterceptor implements Element {
     public static final String TOOL_TYPE_KEY = "tool_type";
     public static final String TOOL_VALUE = "tool";
 
-    private ContainerElement wrapped;
+    private final ContainerElement wrapped;
     private final Plugin plugin;
-    private Map<String, BiConsumer<ClickEvent, Element>> handlerMap = new HashMap<>();
+    private final Map<String, BiConsumer<ClickEvent, Element>> handlerMap = new HashMap<>();
 
     public ToolInterceptor(ContainerElement wrapped, Plugin plugin) {
         this.wrapped = wrapped;
