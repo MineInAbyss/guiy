@@ -8,11 +8,8 @@ Guiy is a general purpose library for creating chest GUIs. It is an easy
 way to create navigatable guis with powerful functionality, such as
 on click events and user input.
 
-Guiy was written against minecraft version 1.13.2, but should work for higher
-versions (and probably lower versions as well). If it doesn't work for something in
-1.14 let me know and I'll take a look.
-
-
+Guiy was written against Minecraft version 1.15.2, but should work for higher
+versions (and probably lower versions as well). If it doesn't work for something let me know and I'll take a look.
 
 Guiy was made with creative mode in mind, so treats all clicks the same (clients in
 creative mode do not distinguish between different types of inventory 
@@ -28,7 +25,6 @@ click events).
 * ScrollingPallet - Horizontally scrolling element fixed at one slot high
 * FillableElement - Allows adding other elements to it at next available position
 
-
 # Examples
 
 Guiy abstracts the chest GUI into a number of elements. Most elements
@@ -42,7 +38,7 @@ in `com.derongan.minecraft.guiy.GuiListener`. You can register this if
 you want.
 
 ## Create simple view and swap to a new view
-```
+```java
 Layout secondView = ...
 Layout firstView = new Layout();
 Element cell = Cell.forMaterial(Material.DIAMOND_BLOCK, "Button");
@@ -62,7 +58,7 @@ guiHolder.show(player);
 ```
 
 ## Handle numeric user input
-```
+```java
 Layout layout = new Layout();
 Element cell = Cell.forMaterial(Material.DIAMOND_BLOCK, "Submit Number");
 ClickableElement button = new ClickableElement(cell);
@@ -84,8 +80,16 @@ GuiHolder guiHolder = new GuiHolder(6, "Gui with number input", layout, yourPlug
 guiHolder.show(player);
 ```
 
+# Usage
+
+- Depend on [KotlinSpice](https://github.com/CultOfClang/KotlinSpice) in your plugin config, and request users to download
+the plugin to their server.
+- Or: Manage [shading](https://imperceptiblethoughts.com/shadow/) Kotlin. Shading Kotlin can cause hard-to-find errors if two different versions are present during runtime!
+
+**!! We are now using Github Packages which you can depend on similar to our other library, [Idofront](https://github.com/MineInAbyss/Idofront), but it is a bit more annoying, and JitPack will probably still work.**
+
 ## Use with Gradle
-```
+```groovy
 repositories {
     maven {
         name = 'jitpack'
@@ -94,12 +98,26 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.github.MineInAbyss', name: 'guiy', version: "master-SNAPSHOT"
+    implementation group: 'com.github.MineInAbyss', name: 'guiy', version: "master-SNAPSHOT"
 }
 ```
 
-## Use with Maven
+Be sure to shade Guiy! It is recommended that you relocate the jar into a unique package in order to avoid problems when different plugins are using different versions of Guiy. We may eventually release this project as a separate plugin and this step will not be needed.
+
+```groovy
+shadowJar {
+    relocate 'com.derongan.minecraft.guiy', "${project.group}.${project.name}.guiy".toLowerCase()
+
+    minimize {
+        exclude(dependency('de.erethon:headlib:3.0.2'))
+    }
+}
 ```
+
+Minimize will only shade classes you are using and does not seem to cause problems with Guiy. It does cause problems with headlib however, so you must exclude it from minimization.
+
+## Use with Maven
+```xml
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -114,13 +132,15 @@ dependencies {
 </dependency>
 ```
 
+Do the equivalent of shading with Gradle, and relocate the jar into a unique package if possibe, as described in the `Use with Gradle` section.
+
 ## Advanced - Protobuf Support
 This is probably very specific to the problem I was solving when I made Guiy, 
 but Guiy supports Protocol buffer inputs out of the box. 
 
 Say we have the following protocol buffer definition:
 
-```
+```proto
 package com.something.test.proto;
 
 message Thing {
@@ -137,7 +157,7 @@ message Thing {
 
 We can create an input that will create a message for this type like so:
 
-```
+```java
 // Construct the initial message state. Values will be preserved if unchanged.
 Thing thing = Thing.newBuilder().setValue(2).build;
 ProtobufInput<Thing> protobufInput = new ProtobufInput<>(thing);
@@ -149,5 +169,4 @@ thing.setSubmitAction(newThing -> {
 
 ## Thanks
 
-Many thanks to Daniel Saukel for [Headlib](https://github.com/DRE2N/HeadLib), which 
-makes life so much easier.
+Many thanks to Daniel Saukel for [Headlib](https://github.com/DRE2N/HeadLib), which makes life so much easier.
