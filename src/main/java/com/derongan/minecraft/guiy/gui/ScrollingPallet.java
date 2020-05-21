@@ -1,12 +1,13 @@
 package com.derongan.minecraft.guiy.gui;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import de.erethon.headlib.HeadLib;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.jetbrains.annotations.NotNull;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 /**
  * A pallet that can hold a number of elements (referred to as tools). It allows cyclic scrolling left and right. It is
@@ -53,18 +54,12 @@ public class ScrollingPallet implements Element, ListContainable {
      * Adds a cell too the pallet.
      *
      * @param cell The cell to add.
+     * @return the cell that was added
      */
     @Override
-    public void addElement(@NotNull Element cell) {
+    public <T extends Element> @NotNull T addElement(@NotNull T cell) {
         tools.add(cell);
-    }
-
-    /**
-     * Adds a list of cells with the logic of addElement.
-     */
-    @Override
-    public void addAll(List<? extends Element> elements) {
-        elements.forEach(this::addElement);
+        return cell;
     }
 
     /**

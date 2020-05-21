@@ -1,12 +1,13 @@
 package com.derongan.minecraft.guiy.gui;
 
-import java.util.function.Consumer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Consumer;
 
 /**
  * An {@link InventoryHolder} with extra functionality for rendering Guiy Elements and Layouts
@@ -38,7 +39,6 @@ public class GuiHolder implements InventoryHolder {
     public @NotNull Inventory getInventory() {
         return inventory;
     }
-
 
     public void render() {
         inventory.clear();

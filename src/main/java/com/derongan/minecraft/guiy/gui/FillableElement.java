@@ -1,6 +1,5 @@
 package com.derongan.minecraft.guiy.gui;
 
-import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -42,25 +41,20 @@ public class FillableElement implements Element, ListContainable, GridContainabl
 
     /**
      * Adds an element at the next available position.
+     *
+     * @return the element added
      */
     @Override
-    public void addElement(@NotNull Element element) {
+    public <T extends Element> @NotNull T addElement(@NotNull T element) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (elements[x][y] == null) {
                     elements[x][y] = element;
-                    return;
+                    return element;
                 }
             }
         }
-    }
-
-    /**
-     * Adds a list of element with the logic of addElement.
-     */
-    @Override
-    public void addAll(List<? extends Element> elements) {
-        elements.forEach(this::addElement);
+        return element;
     }
 
     /**
@@ -69,10 +63,12 @@ public class FillableElement implements Element, ListContainable, GridContainabl
      * @param x       The x coordinate within this element.
      * @param y       The y coordinate within this element.
      * @param element The element to add to this element.
+     * @return the element set
      */
     @Override
-    public void setElement(int x, int y, @NotNull Element element) {
+    public <T extends Element> @NotNull T setElement(int x, int y, @NotNull T element) {
         elements[x][y] = element;
+        return element;
     }
 
     /**

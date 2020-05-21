@@ -1,10 +1,11 @@
 package com.derongan.minecraft.guiy.gui;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * An element thats purpose is to contain other elements at specific locations. It forwards any clicks to
@@ -22,12 +23,14 @@ public class Layout implements Element, GridContainable {
      * <p>
      * Adding an element to the location of an existing element will overwrite the existing element.
      *
-     * @param x X coordinate to add the element at.
-     * @param y Y coordinate to add the element at.
-     * @param e The element ot add.
+     * @param x       X coordinate to add the element at.
+     * @param y       Y coordinate to add the element at.
+     * @param element The element to add.
+     * @return the element added
      */
-    public void setElement(int x, int y, Element e) {
-        elements.put(Pair.create(x, y), e);
+    public <T extends Element> @NotNull T setElement(int x, int y, @NotNull T element) {
+        elements.put(Pair.create(x, y), element);
+        return element;
     }
 
     /**
