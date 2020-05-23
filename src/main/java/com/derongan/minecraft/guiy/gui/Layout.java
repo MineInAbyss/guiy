@@ -1,6 +1,7 @@
 package com.derongan.minecraft.guiy.gui;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,18 @@ public class Layout implements Element, GridContainable {
      */
     public void removeElement(int x, int y) {
         elements.remove(Pair.create(x, y));
+    }
+
+    //TODO untested
+    public void removeElement(@Nullable Element element) {
+        for (Map.Entry<Pair<Integer>, Element> entry : elements.entrySet()) {
+            Pair<Integer> key = entry.getKey();
+            Element val = entry.getValue();
+            if (val == element) {
+                elements.remove(key);
+                return;
+            }
+        }
     }
 
     @Override
