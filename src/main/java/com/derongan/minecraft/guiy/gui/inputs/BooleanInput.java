@@ -5,6 +5,7 @@ import com.derongan.minecraft.guiy.gui.Element;
 import com.derongan.minecraft.guiy.gui.GuiRenderer;
 import com.derongan.minecraft.guiy.gui.Size;
 import de.erethon.headlib.HeadLib;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -15,13 +16,12 @@ public class BooleanInput implements Element, Input<Boolean> {
     private Boolean selected = null;
     private Consumer<Boolean> consumer;
 
-
     public BooleanInput(Boolean initial) {
         this.selected = initial;
     }
 
     @Override
-    public Size getSize() {
+    public @NotNull Size getDims() {
         return Size.create(2, 1);
     }
 
@@ -46,12 +46,12 @@ public class BooleanInput implements Element, Input<Boolean> {
     }
 
     @Override
-    public void setSubmitAction(Consumer<Boolean> consumer) {
-        this.consumer = consumer;
+    public Consumer<Boolean> getSubmitAction() {
+        return consumer;
     }
 
     @Override
-    public Consumer<Boolean> getSubmitAction() {
-        return consumer;
+    public void setSubmitAction(Consumer<Boolean> consumer) {
+        this.consumer = consumer;
     }
 }

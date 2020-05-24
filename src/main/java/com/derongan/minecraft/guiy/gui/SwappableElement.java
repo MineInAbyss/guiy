@@ -11,8 +11,8 @@ public class SwappableElement implements Element {
     }
 
     @Override
-    public Size getSize() {
-        return wrapped.getSize();
+    public Size getDims() {
+        return wrapped.getDims();
     }
 
     @Override

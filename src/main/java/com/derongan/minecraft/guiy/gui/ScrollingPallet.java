@@ -35,7 +35,7 @@ public class ScrollingPallet implements Element, ListContainable {
     }
 
     @Override
-    public Size getSize() {
+    public Size getDims() {
         return Size.create(width, 1);
     }
 

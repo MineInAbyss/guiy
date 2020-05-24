@@ -1,7 +1,7 @@
 package com.derongan.minecraft.guiy.kotlin_dsl
 
 import com.derongan.minecraft.guiy.gui.*
-import com.derongan.minecraft.guiy.gui.elements.ListElement
+import com.derongan.minecraft.guiy.gui.elements.WrappedListElement
 import javafx.scene.Parent
 import tornadofx.View
 import tornadofx.fieldset
@@ -34,17 +34,19 @@ fun ListContainable.button(wrapped: Element, init: (ClickEvent) -> (Unit)) =
 fun ListContainable.scrollingPallet(width: Int, init: (ScrollingPallet.() -> Unit)? = null) =
         initAndAdd(ScrollingPallet(width), init)
 
-fun <T> ListContainable.list(
+fun <T> ListContainable.wrappedList(
         width: Int,
         height: Int,
-        list: List<T>,
-        toElement: ListElement<T>.(T) -> Element,
-        init: (ListElement<T>.() -> Unit)? = null
-) = initAndAdd(ListElement(width, height, list, toElement), init)
+        list: MutableList<T>,
+        filter: MutableList<T>.() -> List<T> = { this },
+        toElement: WrappedListElement<T>.(T) -> Element,
+        init: (WrappedListElement<T>.() -> Unit)? = null
+) = initAndAdd(WrappedListElement(width, height, list, filter, toElement), init)
 
 fun <T : Element> ListContainable.addElement(element: T, init: T.() -> Unit) =
         addElement(initTag(element, init))
 
+@Deprecated("", ReplaceWith("element{} at x to y"))
 fun <T : Element> GridContainable.setElement(x: Int, y: Int, element: T, init: T.() -> Unit): T =
         setElement(x, y, initTag(element, init)).let { element }
 

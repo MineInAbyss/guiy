@@ -70,7 +70,7 @@ public class Layout implements Element, GridContainable {
                 .stream()
                 .filter(child -> {
                     Pair<Integer> coords = child.getKey();
-                    Size size = child.getValue().getSize();
+                    Size size = child.getValue().getDims();
 
                     int xMin = coords.getFirst();
                     int xMax = coords.getFirst() + size.getWidth() - 1;
@@ -89,13 +89,13 @@ public class Layout implements Element, GridContainable {
     }
 
     @Override
-    public Size getSize() {
+    public Size getDims() {
         int width = 0;
         int height = 0;
         Set<Map.Entry<Pair<Integer>, Element>> entries = elements.entrySet();
         for (Map.Entry<Pair<Integer>, Element> entry : entries) {
             Pair<Integer> loc = entry.getKey();
-            Size size = entry.getValue().getSize();
+            Size size = entry.getValue().getDims();
 
             width = Math.max(width, loc.getFirst() + size.getWidth());
             height = Math.max(height, loc.getSecond() + size.getWidth());
@@ -107,6 +107,6 @@ public class Layout implements Element, GridContainable {
 
     @Override
     public String toString() {
-        return String.format("Layout(%dx%d)", getSize().getWidth(), getSize().getWidth());
+        return String.format("Layout(%dx%d)", getDims().getWidth(), getDims().getWidth());
     }
 }

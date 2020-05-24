@@ -20,8 +20,12 @@ targetCompatibility = 1.8
 
 if (project.hasProperty("buildNo")) version += ".$buildNo"
 
+def github_username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+def github_password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+
 repositories {
     mavenCentral()
+    jcenter()
     maven {
         name = 'spigotmc-repo'
         url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
@@ -33,6 +37,14 @@ repositories {
     maven {
         name = 'dre-repo'
         url = 'https://erethon.de/repo/'
+    }
+    maven {
+        name = "CultOfClang"
+        url = uri("https://maven.pkg.github.com/CultOfClang/Minecraft/")
+        credentials {
+            username = github_username
+            password = github_password
+        }
     }
 }
 
@@ -67,6 +79,7 @@ publishing {
 }
 
 dependencies {
+    implementation "org.cultofclang.minecraft:kotlinspice:$kotlin_version+"
     testImplementation 'junit:junit:4.12'
     implementation 'de.erethon:headlib:3.0.2'
     compileOnly 'org.spigotmc:spigot-api:1.15-R0.1-SNAPSHOT'

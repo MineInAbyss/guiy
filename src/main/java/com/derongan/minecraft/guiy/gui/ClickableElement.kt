@@ -13,8 +13,8 @@ open class ClickableElement @JvmOverloads constructor(
         private val wrapped: Element,
         private var clickAction: (ClickEvent) -> (Unit) = { it.isCancelled = true }
 ) : Element {
-    override val size: Size
-        get() = wrapped.size
+    override val dims: Size
+        get() = wrapped.dims
 
     override fun draw(guiRenderer: GuiRenderer) {
         wrapped.draw(guiRenderer)

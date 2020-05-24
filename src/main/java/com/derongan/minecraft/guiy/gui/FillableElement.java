@@ -21,7 +21,7 @@ public class FillableElement implements Element, ListContainable, GridContainabl
 
     @NotNull
     @Override
-    public Size getSize() {
+    public Size getDims() {
         return Size.create(width, height);
     }
 

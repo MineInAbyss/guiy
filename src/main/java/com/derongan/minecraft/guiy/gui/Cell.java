@@ -78,7 +78,7 @@ public class Cell implements Element {
     }
 
     @Override
-    public Size getSize() {
+    public Size getDims() {
         return Size.create(1, 1);
     }
 

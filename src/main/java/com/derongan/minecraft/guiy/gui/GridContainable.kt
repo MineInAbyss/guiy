@@ -10,26 +10,5 @@ interface GridContainable : ListContainable {
     override fun <T : Element> addElement(element: T): T = element
 
     @JvmDefault
-    operator fun IntRange.plus(element: Element) {
-        setElement(first, last, element)
-    }
-
-    @JvmDefault
-    infix fun <T : Element> Pair<Int, Int>.add(element: T): T {
-        return setElement(first, second, element)
-    }
-
-    @JvmDefault
-    infix fun <T : Element> T.at(x: Int): ElementPositioner<T> {
-        return ElementPositioner(this, x)
-    }
-
-    @JvmDefault
-    infix fun <T : Element> ElementPositioner<T>.to(y: Int): T {
-        return setElement(x, y, element)
-    }
+    fun <T : Element> T.at(x: Int, y: Int): T = setElement(x, y, this)
 }
-
-class ElementPositioner<T : Element>(val element: T, val x: Int)
-
-fun GridContainable.at(x: Int, y: Int) = x to y
