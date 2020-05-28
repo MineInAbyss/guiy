@@ -2,8 +2,7 @@ package com.derongan.minecraft.guiy.gui.elements
 
 import com.derongan.minecraft.guiy.gui.ClickEvent
 import com.derongan.minecraft.guiy.gui.Element
-import com.derongan.minecraft.guiy.gui.GuiRenderer
-import com.derongan.minecraft.guiy.gui.Size
+import com.derongan.minecraft.guiy.gui.elements.containers.singular.Wrappable
 import java.util.function.Consumer
 
 
@@ -15,23 +14,15 @@ import java.util.function.Consumer
  */
 open class ClickableElement @JvmOverloads constructor(
         //TODO figure out if there's a good reason this was made so immutable
-        private val wrapped: Element,
+        override val wrapped: Element,
         var clickAction: (ClickEvent) -> (Unit) = { it.isCancelled = true }
-) : Element {
-    override val dims: Size
-        get() = wrapped.dims
-
-    override fun draw(guiRenderer: GuiRenderer) {
-        wrapped.draw(guiRenderer)
-    }
-
+) : Wrappable(wrapped) {
     override fun onClick(clickEvent: ClickEvent) {
         clickAction(clickEvent)
     }
 
     /**
-     * Sets the onClick action.
-     * Only visible to java.
+     * Sets the onClick action. Only visible to java.
      *
      * @param clickAction the action to take when clicked.
      */
