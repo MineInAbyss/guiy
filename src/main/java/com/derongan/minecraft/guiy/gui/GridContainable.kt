@@ -1,5 +1,7 @@
 package com.derongan.minecraft.guiy.gui
 
+import com.derongan.minecraft.guiy.gui.elements.containers.Containable
+
 interface GridContainable : Containable {
     /**
      * Adds an element.

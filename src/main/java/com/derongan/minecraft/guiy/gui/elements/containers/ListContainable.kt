@@ -1,6 +1,5 @@
-package com.derongan.minecraft.guiy.gui.elements.containables
+package com.derongan.minecraft.guiy.gui.elements.containers
 
-import com.derongan.minecraft.guiy.gui.Containable
 import com.derongan.minecraft.guiy.gui.Element
 
 class ListContainable : Containable, MutableList<Element> by mutableListOf() {

@@ -1,9 +1,9 @@
 package com.derongan.minecraft.guiy.gui.layouts
 
-import com.derongan.minecraft.guiy.gui.ClickableElement
 import com.derongan.minecraft.guiy.gui.Element
 import com.derongan.minecraft.guiy.gui.GuiHolder
 import com.derongan.minecraft.guiy.gui.Layout
+import com.derongan.minecraft.guiy.gui.elements.ClickableElement
 import com.derongan.minecraft.guiy.helpers.toCell
 import de.erethon.headlib.HeadLib
 import org.bukkit.entity.Player

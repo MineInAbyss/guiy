@@ -1,6 +1,6 @@
 package com.derongan.minecraft.guiy.gui
 
-import com.derongan.minecraft.guiy.gui.elements.containables.GridContainableBiMap
+import com.derongan.minecraft.guiy.gui.elements.containers.GridContainableBiMap
 import org.bukkit.inventory.ItemStack
 
 /**

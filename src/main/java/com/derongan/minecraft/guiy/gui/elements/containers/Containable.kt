@@ -1,5 +1,6 @@
-package com.derongan.minecraft.guiy.gui
+package com.derongan.minecraft.guiy.gui.elements.containers
 
+import com.derongan.minecraft.guiy.gui.Element
 import com.derongan.minecraft.guiy.gui.elements.dynamic.Mutating
 
 interface Containable {

@@ -1,4 +1,4 @@
-package com.derongan.minecraft.guiy.gui.elements.containables
+package com.derongan.minecraft.guiy.gui.elements.containers
 
 import com.derongan.minecraft.guiy.gui.Element
 import com.derongan.minecraft.guiy.gui.GridContainable
@@ -11,6 +11,8 @@ abstract class GridContainableBiMap : GridContainable, MutableBiMap<Pair<Int, In
         return element
     }
 
+    fun getElement(x: Int, y: Int) = this[x to y]
+
     override fun removeElement(x: Int, y: Int) {
         this -= x to y
     }
@@ -18,4 +20,13 @@ abstract class GridContainableBiMap : GridContainable, MutableBiMap<Pair<Int, In
     override fun removeElement(element: Element?) {
         inverse.remove(element)
     }
+
+    /**
+     * Checks if there is an element at a specific position.
+     *
+     * @param x The x coordinate within this element.
+     * @param y The y coordinate within this element.
+     * @return true if there is an element at this coordinate.
+     */
+    fun hasElement(x: Int, y: Int) = contains(x to y)
 }

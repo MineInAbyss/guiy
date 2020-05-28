@@ -1,5 +1,9 @@
-package com.derongan.minecraft.guiy.gui
+package com.derongan.minecraft.guiy.gui.elements
 
+import com.derongan.minecraft.guiy.gui.ClickEvent
+import com.derongan.minecraft.guiy.gui.Element
+import com.derongan.minecraft.guiy.gui.GuiRenderer
+import com.derongan.minecraft.guiy.gui.Size
 import java.util.function.Consumer
 
 

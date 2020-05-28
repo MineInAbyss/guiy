@@ -1,6 +1,8 @@
 package com.derongan.minecraft.guiy.kotlin_dsl
 
 import com.derongan.minecraft.guiy.gui.*
+import com.derongan.minecraft.guiy.gui.elements.ClickableElement
+import com.derongan.minecraft.guiy.gui.elements.containers.Containable
 import com.derongan.minecraft.guiy.gui.elements.dynamic.Refreshing
 import com.derongan.minecraft.guiy.gui.elements.lists.WrappedListElement
 
