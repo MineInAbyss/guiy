@@ -1,8 +1,9 @@
-package com.derongan.minecraft.guiy.gui.elements.containers
+package com.derongan.minecraft.guiy.gui.elements.containers.lists
 
 import com.derongan.minecraft.guiy.gui.Element
+import com.derongan.minecraft.guiy.gui.elements.containers.Containable
 
-class ListContainable : Containable, MutableList<Element> by mutableListOf() {
+abstract class ListContainable : Element, Containable, MutableList<Element> by mutableListOf() {
     override fun <T : Element> addElement(element: T): T {
         this += element
         return element

@@ -13,6 +13,14 @@ abstract class GridContainableBiMap : GridContainable, MutableBiMap<Pair<Int, In
 
     fun getElement(x: Int, y: Int) = this[x to y]
 
+    operator fun get(x: Int, y: Int) {
+        getElement(x, y)
+    }
+
+    operator fun set(x: Int, y: Int, element: Element) {
+        setElement(x, y, element)
+    }
+
     override fun removeElement(x: Int, y: Int) {
         this -= x to y
     }
