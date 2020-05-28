@@ -6,7 +6,7 @@ import com.derongan.minecraft.guiy.gui.Layout
 import com.derongan.minecraft.guiy.gui.Size
 import kotlin.reflect.KProperty
 
-class DynamicElement<T : Element>(private val create: Layout.() -> T) : Layout() {
+class Refreshing<T : Element>(private val create: Layout.() -> T) : Layout() {
     private var currentElement: T = create()
     override val dims: Size get() = currentElement.dims
 
@@ -17,4 +17,13 @@ class DynamicElement<T : Element>(private val create: Layout.() -> T) : Layout()
     }
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T = currentElement
+}
+
+class Mutating<T : Element>(val element: T, private val mutate: T.() -> Unit) : Element by element {
+    override fun draw(guiRenderer: GuiRenderer) {
+        element.mutate()
+        element.draw(guiRenderer)
+    }
+
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): T = element
 }

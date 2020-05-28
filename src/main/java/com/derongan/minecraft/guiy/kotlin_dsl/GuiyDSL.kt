@@ -1,7 +1,7 @@
 package com.derongan.minecraft.guiy.kotlin_dsl
 
 import com.derongan.minecraft.guiy.gui.*
-import com.derongan.minecraft.guiy.gui.elements.dynamic.DynamicElement
+import com.derongan.minecraft.guiy.gui.elements.dynamic.Refreshing
 import com.derongan.minecraft.guiy.gui.elements.lists.WrappedListElement
 
 @DslMarker
@@ -17,7 +17,7 @@ fun <T : Element> initTag(element: T, init: T.() -> Unit, addTo: MutableList<T>?
     return element
 }
 
-fun <T : Element> ListContainable.initAndAdd(element: T, init: (T.() -> Unit)?): T {
+fun <T : Element> Containable.initAndAdd(element: T, init: (T.() -> Unit)?): T {
     init?.invoke(element)
     addElement(element)
     return element
@@ -25,13 +25,13 @@ fun <T : Element> ListContainable.initAndAdd(element: T, init: (T.() -> Unit)?):
 
 infix fun <T : Element> T.with(init: T.() -> Unit): T = init().let { this }
 
-fun ListContainable.button(wrapped: Element, init: (ClickEvent) -> (Unit)) =
+fun Containable.button(wrapped: Element, init: (ClickEvent) -> (Unit)) =
         addElement(ClickableElement(wrapped, init))
 
-fun ListContainable.scrollingPallet(width: Int, init: (ScrollingPallet.() -> Unit)? = null) =
+fun Containable.scrollingPallet(width: Int, init: (ScrollingPallet.() -> Unit)? = null) =
         initAndAdd(ScrollingPallet(width), init)
 
-fun <T> ListContainable.wrappedList(
+fun <T> Containable.wrappedList(
         width: Int,
         height: Int,
         list: MutableList<T>,
@@ -40,14 +40,12 @@ fun <T> ListContainable.wrappedList(
         init: (WrappedListElement<T>.() -> Unit)? = null
 ) = initAndAdd(WrappedListElement(width, height, list, filter, toElement), init)
 
-fun <T : Element> ListContainable.addElement(element: T, init: T.() -> Unit) =
+fun <T : Element> Containable.addElement(element: T, init: T.() -> Unit) =
         addElement(initTag(element, init))
 
-fun <T : Element> Layout.dynamic(create: Layout.() -> T): DynamicElement<T> {
-    return addElement(DynamicElement(create))
+fun <T : Element> Layout.dynamic(create: Layout.() -> T): Refreshing<T> {
+    return addElement(Refreshing(create))
 }
-
-fun <T : Element> T.dynamic(mutate: T.() -> Unit): DynamicElement<T> = TODO()
 
 @Deprecated("", ReplaceWith("element{} at x to y"))
 fun <T : Element> GridContainable.setElement(x: Int, y: Int, element: T, init: T.() -> Unit): T =

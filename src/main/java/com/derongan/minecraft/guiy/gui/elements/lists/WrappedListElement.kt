@@ -7,7 +7,6 @@ import com.derongan.minecraft.guiy.gui.elements.lists.ScrollType.NONE
 import com.derongan.minecraft.guiy.helpers.offset
 import com.derongan.minecraft.guiy.helpers.toCell
 import com.derongan.minecraft.guiy.kotlin_dsl.button
-import com.derongan.minecraft.guiy.kotlin_dsl.dynamic
 import com.derongan.minecraft.guiy.kotlin_dsl.guiyLayout
 import com.derongan.minecraft.guiy.kotlin_dsl.wrappedList
 import de.erethon.headlib.HeadLib
@@ -30,7 +29,7 @@ class WrappedListElement<T>(
         private val list: MutableList<T> = mutableListOf(),
         val filter: MutableList<T>.() -> List<T> = { this },
         val convertBy: WrappedListElement<T>.(T) -> Element
-) : Element, ListContainable, MutableList<T> by list {
+) : Element, Containable, MutableList<T> by list {
     private val elements: MutableMap<T, Element> = mutableMapOf()
     override val dims: Size = Size(width, height)
 
@@ -107,14 +106,7 @@ class WrappedListElement<T>(
                 with(editOnClick) {
                     page = (page - 1).wrapPage()
                 }
-            }.dynamic {
-                //TODO figure out if there's a good reason cells were made so immutable
-                //name = "Page ${editOnClick.page + 1}"
             }.at(posX, posY)
-            //TODO - THE PLAN:
-            // button will automatically add itself to the parent element
-            // we let that happen, then dynamic calls remove on the element
-            // it then adds itself to the parent element, with the original element wrapped inside
 
             button(secondArrow.toCell(this@WrappedListElement.nextButtonName)) {
                 with(editOnClick) {

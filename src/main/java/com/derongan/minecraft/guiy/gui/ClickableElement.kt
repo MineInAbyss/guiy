@@ -10,6 +10,7 @@ import java.util.function.Consumer
  * @param clickAction the action to take when clicked.
  */
 open class ClickableElement @JvmOverloads constructor(
+        //TODO figure out if there's a good reason this was made so immutable
         private val wrapped: Element,
         var clickAction: (ClickEvent) -> (Unit) = { it.isCancelled = true }
 ) : Element {

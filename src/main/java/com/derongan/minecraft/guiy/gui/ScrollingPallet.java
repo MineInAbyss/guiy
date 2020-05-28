@@ -13,7 +13,7 @@ import static com.google.common.base.Preconditions.checkArgument;
  * A pallet that can hold a number of elements (referred to as tools). It allows cyclic scrolling left and right. It is
  * always one slot high. Tools are normal Elements, and define their own behaviour.
  */
-public class ScrollingPallet implements Element, ListContainable {
+public class ScrollingPallet implements Element, Containable {
     private final int width;
     private final Layout innerLayout;
     private final List<Element> tools = new ArrayList<>();

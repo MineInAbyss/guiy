@@ -86,6 +86,7 @@ dependencies {
     implementation 'com.google.protobuf:protobuf-java:3.8.0'
     implementation 'com.google.dagger:dagger:2.+'
     compileOnly 'org.jetbrains:annotations:17.0.0'
+    api 'com.uchuhimo:kotlinx-bimap:1.2'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.+'
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }

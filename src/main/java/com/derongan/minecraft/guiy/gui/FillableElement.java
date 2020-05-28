@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Element that supports having Elements added to it dynamically.
  */
-public class FillableElement implements Element, ListContainable, GridContainable {
+public class FillableElement implements Element, Containable, GridContainable {
     private final int height;
     private final int width;
 
