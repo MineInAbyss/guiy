@@ -1,11 +1,7 @@
 package com.derongan.minecraft.guiy.kotlin_dsl
 
 import com.derongan.minecraft.guiy.gui.*
-import com.derongan.minecraft.guiy.gui.elements.WrappedListElement
-import javafx.scene.Parent
-import tornadofx.View
-import tornadofx.fieldset
-import tornadofx.form
+import com.derongan.minecraft.guiy.gui.elements.lists.WrappedListElement
 
 @DslMarker
 annotation class GuiyMarker
@@ -49,12 +45,3 @@ fun <T : Element> ListContainable.addElement(element: T, init: T.() -> Unit) =
 @Deprecated("", ReplaceWith("element{} at x to y"))
 fun <T : Element> GridContainable.setElement(x: Int, y: Int, element: T, init: T.() -> Unit): T =
         setElement(x, y, initTag(element, init)).let { element }
-
-//TODO remove
-private class Test : View() {
-    override val root: Parent = form {
-        fieldset {
-
-        }
-    }
-}
