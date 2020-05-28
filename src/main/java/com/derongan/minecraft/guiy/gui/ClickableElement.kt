@@ -11,7 +11,7 @@ import java.util.function.Consumer
  */
 open class ClickableElement @JvmOverloads constructor(
         private val wrapped: Element,
-        private var clickAction: (ClickEvent) -> (Unit) = { it.isCancelled = true }
+        var clickAction: (ClickEvent) -> (Unit) = { it.isCancelled = true }
 ) : Element {
     override val dims: Size
         get() = wrapped.dims
@@ -29,19 +29,8 @@ open class ClickableElement @JvmOverloads constructor(
      *
      * @param clickAction the action to take when clicked.
      */
+    @Deprecated(message = "JUST FOR JAVA", replaceWith = ReplaceWith("clickAction = {}"), level = DeprecationLevel.HIDDEN)
     fun setClickAction(clickAction: Consumer<ClickEvent>) {
         this.clickAction = clickAction::accept
-    }
-
-
-    /**
-     * A similar function to [setClickAction] but for Kotlin. Calling it setClickAction
-     * causes an ambiguous call, but since the pickupAction is expected to be passed
-     * on class creation in Kotlin, this isn't a big deal.
-     *
-     * @param clickAction the action to take when clicked.
-     */
-    fun setClickActionKt(clickAction: (ClickEvent) -> (Unit)) {
-        this.clickAction = clickAction
     }
 }

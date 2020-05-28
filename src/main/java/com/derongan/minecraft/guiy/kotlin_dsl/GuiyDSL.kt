@@ -1,6 +1,7 @@
 package com.derongan.minecraft.guiy.kotlin_dsl
 
 import com.derongan.minecraft.guiy.gui.*
+import com.derongan.minecraft.guiy.gui.elements.dynamic.DynamicElement
 import com.derongan.minecraft.guiy.gui.elements.lists.WrappedListElement
 
 @DslMarker
@@ -41,6 +42,12 @@ fun <T> ListContainable.wrappedList(
 
 fun <T : Element> ListContainable.addElement(element: T, init: T.() -> Unit) =
         addElement(initTag(element, init))
+
+fun <T : Element> Layout.dynamic(create: Layout.() -> T): DynamicElement<T> {
+    return addElement(DynamicElement(create))
+}
+
+fun <T : Element> T.dynamic(mutate: T.() -> Unit): DynamicElement<T> = TODO()
 
 @Deprecated("", ReplaceWith("element{} at x to y"))
 fun <T : Element> GridContainable.setElement(x: Int, y: Int, element: T, init: T.() -> Unit): T =

@@ -12,11 +12,17 @@ import java.util.stream.Stream;
  * An element thats purpose is to contain other elements at specific locations. It forwards any clicks to
  * <em>any</em> element that claims to be in an inventory slot, based on its position and size.
  */
+//TODO rewrite in kotlin to make use of delegation to a list
 public class Layout implements Element, GridContainable {
     private final Map<Pair<Integer>, Element> elements;
 
     public Layout() {
         elements = new HashMap<>();
+    }
+
+    //TODO remove if there's a good reason this isn't exposed
+    public void clear() {
+        elements.clear();
     }
 
     /**

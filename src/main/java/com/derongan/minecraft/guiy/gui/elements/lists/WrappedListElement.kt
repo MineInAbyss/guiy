@@ -7,6 +7,7 @@ import com.derongan.minecraft.guiy.gui.elements.lists.ScrollType.NONE
 import com.derongan.minecraft.guiy.helpers.offset
 import com.derongan.minecraft.guiy.helpers.toCell
 import com.derongan.minecraft.guiy.kotlin_dsl.button
+import com.derongan.minecraft.guiy.kotlin_dsl.dynamic
 import com.derongan.minecraft.guiy.kotlin_dsl.guiyLayout
 import com.derongan.minecraft.guiy.kotlin_dsl.wrappedList
 import de.erethon.headlib.HeadLib
@@ -69,8 +70,9 @@ class WrappedListElement<T>(
             val (firstArrow, secondArrow) =
                     if (this@WrappedListElement.scrollType == HORIZONTAL) HeadLib.WOODEN_ARROW_LEFT to HeadLib.WOODEN_ARROW_RIGHT
                     else HeadLib.WOODEN_ARROW_UP to HeadLib.WOODEN_ARROW_DOWN
-            fun Int.wrapPage(): Int = if (this < 0) this@WrappedListElement.pages - 1 else this % this@WrappedListElement.pages
+
             var editOnClick = this@WrappedListElement
+            fun Int.wrapPage(): Int = if (this < 0) editOnClick.pages - 1 else this % editOnClick.pages
 
             if (this@WrappedListElement.scrollBarAlignment != INLINE) {
                 val (innerX, innerY, width, height) = with(this@WrappedListElement) {
@@ -105,12 +107,18 @@ class WrappedListElement<T>(
                 with(editOnClick) {
                     page = (page - 1).wrapPage()
                 }
+            }.dynamic {
+                //TODO figure out if there's a good reason cells were made so immutable
+                //name = "Page ${editOnClick.page + 1}"
             }.at(posX, posY)
+            //TODO - THE PLAN:
+            // button will automatically add itself to the parent element
+            // we let that happen, then dynamic calls remove on the element
+            // it then adds itself to the parent element, with the original element wrapped inside
 
             button(secondArrow.toCell(this@WrappedListElement.nextButtonName)) {
                 with(editOnClick) {
                     page = (page + 1).wrapPage()
-                    println("$page")
                 }
             }.at(posX2, posY2)
         }
