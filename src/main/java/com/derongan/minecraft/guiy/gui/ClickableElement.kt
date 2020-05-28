@@ -26,10 +26,12 @@ open class ClickableElement @JvmOverloads constructor(
 
     /**
      * Sets the onClick action.
+     * Only visible to java.
      *
      * @param clickAction the action to take when clicked.
      */
-    @Deprecated(message = "JUST FOR JAVA", replaceWith = ReplaceWith("clickAction = {}"), level = DeprecationLevel.HIDDEN)
+    @Suppress("NEWER_VERSION_IN_SINCE_KOTLIN")
+    @kotlin.SinceKotlin(version = "99999.0") //hack to prevent viewing in Kotlin
     fun setClickAction(clickAction: Consumer<ClickEvent>) {
         this.clickAction = clickAction::accept
     }
