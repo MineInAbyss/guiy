@@ -17,11 +17,12 @@ import kotlin.math.ceil
 import kotlin.properties.Delegates
 
 /**
- * An element which holds a mutable list of items that fit into a rectangle of size [width] and [height]. Can hold any
- * type of element, but has a [special rule][convertBy] to convert items added to the list into elements that show up in
- * the GUI.
+ * An abstract class that provides a lot of useful functionality for lists, such as pagination. It delegates the
+ * implementation of the [MutableList] to an initial list of items of type T. Implementations will choose how to use
+ * this list to generate a list of [elements] that actually get displayed in the gui.
  *
- * @param list A list of items that this should initially be [converted][convertBy]. Will not be mutated.
+ * @param list The initial list to have [MutableList]'s functions delegated to. Changes in the initial list will be
+ * reflected in the gui and vice versa.
  *
  * @property width The width of the element
  * @property height The height of the element

@@ -4,6 +4,12 @@ import com.derongan.minecraft.guiy.gui.Element
 import com.derongan.minecraft.guiy.gui.elements.containers.Containable
 import com.derongan.minecraft.guiy.gui.elements.lists.ListContainable
 
+/**
+ * A [MutableList] of elements that handles rendering and pagination. See [ListContainable] for more useful properties.
+ *
+ * @param list The original list of elements to start with. Changes in the initial list will be reflected in the gui
+ * and vice versa.
+ */
 open class ElementList(
         override val width: Int,
         override val height: Int,
