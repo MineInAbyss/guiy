@@ -10,7 +10,8 @@ import com.derongan.minecraft.guiy.kotlin_dsl.wrappedList
  * the GUI.
  *
  * @param list A list of items that this should initially be [converted][convertBy]. Will not be mutated.
- * @param convertBy Defines how items should be converted into elements that show up in the GUI. Will convert all items in list
+ *
+ * @property convertBy Defines how items should be converted into elements that show up in the GUI. Will convert all items in list
  * initially, then convert items using this rule as they are added.
  */
 class WrappedListElement<T>(

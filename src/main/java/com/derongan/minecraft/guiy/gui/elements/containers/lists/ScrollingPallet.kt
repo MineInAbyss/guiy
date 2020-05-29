@@ -17,6 +17,8 @@ import java.util.*
  *
  * @param width width of the scrolling pallet. Must be at least 3 in order to show a tool and the scroll buttons.
  */
+//TODO move functionality will be moved into ListContainable
+@Deprecated(message = "ScrollingPallet functionality will be moved into ListContainable")
 class ScrollingPallet(override val width: Int) : ElementList(width, 1) {
     init {
         Preconditions.checkArgument(width >= 3, "Width must be over 2 in order to include controls and tools")
