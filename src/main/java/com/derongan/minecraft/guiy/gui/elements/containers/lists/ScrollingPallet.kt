@@ -1,7 +1,9 @@
 package com.derongan.minecraft.guiy.gui.elements.containers.lists
 
-import com.derongan.minecraft.guiy.gui.*
-import com.derongan.minecraft.guiy.gui.Size.Companion.create
+import com.derongan.minecraft.guiy.gui.ClickEvent
+import com.derongan.minecraft.guiy.gui.Element
+import com.derongan.minecraft.guiy.gui.GuiRenderer
+import com.derongan.minecraft.guiy.gui.Layout
 import com.derongan.minecraft.guiy.helpers.offset
 import com.derongan.minecraft.guiy.helpers.toCell
 import com.derongan.minecraft.guiy.kotlin_dsl.guiyLayout
@@ -15,7 +17,7 @@ import java.util.*
  *
  * @param width width of the scrolling pallet. Must be at least 3 in order to show a tool and the scroll buttons.
  */
-class ScrollingPallet(private val width: Int) : ListContainable() {
+class ScrollingPallet(override val width: Int) : ElementList(width, 1) {
     init {
         Preconditions.checkArgument(width >= 3, "Width must be over 2 in order to include controls and tools")
     }
@@ -26,7 +28,6 @@ class ScrollingPallet(private val width: Int) : ListContainable() {
     }
 
     private var origin = 0
-    override val dims: Size = create(width, 1)
 
     override fun draw(guiRenderer: GuiRenderer) {
         innerLayout.draw(guiRenderer)

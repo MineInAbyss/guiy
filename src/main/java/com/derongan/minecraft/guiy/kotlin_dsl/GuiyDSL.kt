@@ -2,10 +2,10 @@ package com.derongan.minecraft.guiy.kotlin_dsl
 
 import com.derongan.minecraft.guiy.gui.ClickEvent
 import com.derongan.minecraft.guiy.gui.Element
-import com.derongan.minecraft.guiy.gui.GridContainable
 import com.derongan.minecraft.guiy.gui.Layout
 import com.derongan.minecraft.guiy.gui.elements.ClickableElement
 import com.derongan.minecraft.guiy.gui.elements.containers.Containable
+import com.derongan.minecraft.guiy.gui.elements.containers.GridContainable
 import com.derongan.minecraft.guiy.gui.elements.containers.lists.ScrollingPallet
 import com.derongan.minecraft.guiy.gui.elements.dynamic.Refreshing
 import com.derongan.minecraft.guiy.gui.elements.lists.WrappedListElement
@@ -41,10 +41,8 @@ fun <T> Containable.wrappedList(
         width: Int,
         height: Int,
         list: MutableList<T>,
-        filter: MutableList<T>.() -> List<T> = { this },
-        toElement: WrappedListElement<T>.(T) -> Element,
         init: (WrappedListElement<T>.() -> Unit)? = null
-) = initAndAdd(WrappedListElement(width, height, list, filter, toElement), init)
+) = initAndAdd(WrappedListElement(width, height, list), init)
 
 fun <T : Element> Containable.addElement(element: T, init: T.() -> Unit) =
         addElement(initTag(element, init))

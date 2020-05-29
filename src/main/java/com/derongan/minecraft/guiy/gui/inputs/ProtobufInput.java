@@ -2,7 +2,7 @@ package com.derongan.minecraft.guiy.gui.inputs;
 
 import com.derongan.minecraft.guiy.gui.*;
 import com.derongan.minecraft.guiy.gui.elements.ClickableElement;
-import com.derongan.minecraft.guiy.gui.elements.containers.FillableElement;
+import com.derongan.minecraft.guiy.gui.elements.containers.grids.FillableElement;
 import com.derongan.minecraft.guiy.gui.elements.containers.singular.SwappableElement;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;

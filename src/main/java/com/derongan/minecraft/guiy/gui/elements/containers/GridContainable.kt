@@ -1,6 +1,6 @@
-package com.derongan.minecraft.guiy.gui
+package com.derongan.minecraft.guiy.gui.elements.containers
 
-import com.derongan.minecraft.guiy.gui.elements.containers.Containable
+import com.derongan.minecraft.guiy.gui.Element
 
 interface GridContainable : Containable {
     /**
@@ -31,4 +31,7 @@ interface GridContainable : Containable {
 
     @JvmDefault
     fun <T : Element> T.at(x: Int, y: Int): T = setElement(x, y, this)
+
+    @JvmDefault
+    fun <T : Element> T.moveTo(x: Int, y: Int): T = removeElement(this).let { this.at(x, y) }
 }
