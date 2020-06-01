@@ -1,10 +1,6 @@
 package com.derongan.minecraft.guiy.gui;
 
-import static com.derongan.minecraft.guiy.GuiyKeys.TYPE_KEY;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.BiConsumer;
+import com.derongan.minecraft.guiy.gui.elements.containers.grids.ContainerElement;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -12,6 +8,12 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.BiConsumer;
+
+import static com.derongan.minecraft.guiy.GuiyKeys.TYPE_KEY;
 
 public class ToolInterceptor implements Element {
     public static final String TOOL_TYPE_KEY = "tool_type";
@@ -28,8 +30,8 @@ public class ToolInterceptor implements Element {
 
     @NotNull
     @Override
-    public Size getSize() {
-        return wrapped.getSize();
+    public Size getDims() {
+        return wrapped.getDims();
     }
 
     @Override

@@ -5,10 +5,11 @@ import com.derongan.minecraft.guiy.gui.Element;
 import com.derongan.minecraft.guiy.gui.GuiRenderer;
 import com.derongan.minecraft.guiy.gui.Size;
 import de.erethon.headlib.HeadLib;
-import java.util.ArrayList;
-import java.util.function.Consumer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.function.Consumer;
 
 /**
  * Input that produces a numeric result. This input is always a 9x5 element.
@@ -23,7 +24,7 @@ public class NumberInput implements Element, Input<Double> {
     }
 
     @Override
-    public Size getSize() {
+    public Size getDims() {
         return Size.create(9, 5);
     }
 

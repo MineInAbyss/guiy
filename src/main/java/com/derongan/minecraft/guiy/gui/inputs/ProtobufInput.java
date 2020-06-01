@@ -1,28 +1,23 @@
 package com.derongan.minecraft.guiy.gui.inputs;
 
-import static com.google.common.collect.ImmutableList.toImmutableList;
-
-import com.derongan.minecraft.guiy.gui.Cell;
-import com.derongan.minecraft.guiy.gui.ClickEvent;
-import com.derongan.minecraft.guiy.gui.ClickableElement;
-import com.derongan.minecraft.guiy.gui.Element;
-import com.derongan.minecraft.guiy.gui.FillableElement;
-import com.derongan.minecraft.guiy.gui.GuiRenderer;
-import com.derongan.minecraft.guiy.gui.Layout;
-import com.derongan.minecraft.guiy.gui.Size;
-import com.derongan.minecraft.guiy.gui.SwappableElement;
-import com.derongan.minecraft.guiy.gui.VerticalScrollingElement;
+import com.derongan.minecraft.guiy.gui.*;
+import com.derongan.minecraft.guiy.gui.elements.ClickableElement;
+import com.derongan.minecraft.guiy.gui.elements.containers.grids.FillableElement;
+import com.derongan.minecraft.guiy.gui.elements.containers.singular.SwappableElement;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.protobuf.Descriptors;
 import com.google.protobuf.Message;
 import de.erethon.headlib.HeadLib;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+
+import static com.google.common.collect.ImmutableList.toImmutableList;
 
 
 /**
@@ -214,8 +209,8 @@ public class ProtobufInput<E extends Message> implements Element, Input<E> {
     }
 
     @Override
-    public Size getSize() {
-        return base.getSize();
+    public Size getDims() {
+        return base.getDims();
     }
 
     @Override

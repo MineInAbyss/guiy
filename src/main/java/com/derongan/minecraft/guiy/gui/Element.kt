@@ -4,13 +4,12 @@ import com.derongan.minecraft.guiy.kotlin_dsl.GuiyMarker
 
 /**
  * Interface shared by all GUI elements.
+ *
+ * @property dims The [Size] of the element.
  */
 @GuiyMarker
 interface Element {
-    /**
-     * Get the size of the element.
-     */
-    val size: Size
+    val dims: Size
 
     /**
      * Draws the element to the provided [GuiRenderer].

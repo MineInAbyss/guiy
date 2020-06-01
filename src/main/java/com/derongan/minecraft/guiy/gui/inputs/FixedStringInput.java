@@ -36,7 +36,7 @@ public class FixedStringInput implements Element, Input<String> {
     }
 
     @Override
-    public Size getSize() {
+    public Size getDims() {
         return Size.create(width, strings.size() / width + 1);
     }
 
