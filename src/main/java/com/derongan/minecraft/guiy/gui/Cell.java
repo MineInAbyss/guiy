@@ -1,6 +1,7 @@
 package com.derongan.minecraft.guiy.gui;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -38,7 +39,7 @@ public class Cell implements Element {
 
         ItemMeta meta = Bukkit.getItemFactory().getItemMeta(material);
 
-        meta.setDisplayName(name);
+        meta.setDisplayName(ChatColor.RESET + name);
 
         itemStack.setItemMeta(meta);
 
@@ -65,7 +66,7 @@ public class Cell implements Element {
     public static Element forItemStack(ItemStack itemStack, String name) {
         ItemMeta meta = itemStack.getItemMeta();
 
-        meta.setDisplayName(name);
+        meta.setDisplayName(ChatColor.RESET + name);
 
         itemStack.setItemMeta(meta);
 

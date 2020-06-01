@@ -2,10 +2,10 @@ package com.derongan.minecraft.guiy.gui.elements.containers.grids
 
 import com.derongan.minecraft.guiy.gui.Element
 import com.derongan.minecraft.guiy.gui.elements.containers.GridContainable
-import com.uchuhimo.collections.MutableBiMap
-import com.uchuhimo.collections.mutableBiMapOf
+import com.google.common.collect.BiMap
+import com.google.common.collect.HashBiMap
 
-abstract class GridContainableBiMap : GridContainable, MutableBiMap<Pair<Int, Int>, Element> by mutableBiMapOf() {
+abstract class GridContainableBiMap : GridContainable, BiMap<Pair<Int, Int>, Element> by HashBiMap.create() {
     override fun <T : Element> setElement(x: Int, y: Int, element: T): T {
         this[x to y] = element
         return element
@@ -26,7 +26,7 @@ abstract class GridContainableBiMap : GridContainable, MutableBiMap<Pair<Int, In
     }
 
     override fun removeElement(element: Element?) {
-        inverse.remove(element)
+        inverse().remove(element)
     }
 
     /**

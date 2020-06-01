@@ -93,7 +93,7 @@ abstract class ListContainable<T>(
 
     private var page = 0
     private val pageSize get() = width * height - startPadding - endPadding
-    private val pages get() = ceil(elements.size.toDouble() / pageSize).toInt()
+    private val pages get() = ceil(elements.size.toDouble() / pageSize).toInt().coerceAtLeast(1)
     private val innerLayout by lazy {
         guiyLayout {
             //TODO make this update when changing scroll type

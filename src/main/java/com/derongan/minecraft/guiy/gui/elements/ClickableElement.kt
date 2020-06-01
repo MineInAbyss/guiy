@@ -16,7 +16,7 @@ open class ClickableElement @JvmOverloads constructor(
         //TODO figure out if there's a good reason this was made so immutable
         override val wrapped: Element,
         var clickAction: (ClickEvent) -> (Unit) = { it.isCancelled = true }
-) : Wrappable(wrapped) {
+) : Wrappable() {
     override fun onClick(clickEvent: ClickEvent) {
         clickAction(clickEvent)
     }

@@ -1,5 +1,6 @@
 package com.derongan.minecraft.guiy.gui;
 
+import kotlin.Deprecated;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -9,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
  * Note that currently the fixed height of this element only determines the clickable region, and where the scroll
  * buttons are shown. Extra elements will spill over to fill up the chest to the bottom.
  */
+@Deprecated(message = "ListContainable")
 public class VerticalScrollingElement implements Element {
     private final int height;
     private final Element wrapped;

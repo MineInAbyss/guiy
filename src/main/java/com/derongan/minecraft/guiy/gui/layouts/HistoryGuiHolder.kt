@@ -14,11 +14,10 @@ import java.util.*
 annotation class GuiyExperimentalKotlinAPI
 
 @GuiyExperimentalKotlinAPI
-abstract class HistoryGuiHolder(numRows: Int, title: String?, plugin: Plugin?) : GuiHolder(numRows, title, plugin) {
+abstract class HistoryGuiHolder @JvmOverloads constructor(numRows: Int, title: String, plugin: Plugin, initial: Element = Layout()) : GuiHolder(numRows, title, plugin, initial) {
     private var player: Player? = null
     private val history: MutableList<Layout> = ArrayList()
     private val backButton: ClickableElement
-    abstract val root: Layout //TODO move into layout as optional property
 
     private fun addBackButton(layout: Layout) {
         history.add(layout)

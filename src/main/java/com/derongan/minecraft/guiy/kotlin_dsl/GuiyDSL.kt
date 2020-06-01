@@ -7,8 +7,8 @@ import com.derongan.minecraft.guiy.gui.elements.ClickableElement
 import com.derongan.minecraft.guiy.gui.elements.containers.Containable
 import com.derongan.minecraft.guiy.gui.elements.containers.GridContainable
 import com.derongan.minecraft.guiy.gui.elements.containers.lists.ScrollingPallet
-import com.derongan.minecraft.guiy.gui.elements.dynamic.Refreshing
 import com.derongan.minecraft.guiy.gui.elements.lists.WrappedListElement
+import com.derongan.minecraft.guiy.gui.inputs.ToggleElement
 
 @DslMarker
 annotation class GuiyMarker
@@ -44,12 +44,14 @@ fun <T> Containable.wrappedList(
         init: (WrappedListElement<T>.() -> Unit)? = null
 ) = initAndAdd(WrappedListElement(width, height, list), init)
 
+fun Containable.toggle(default: Element, toggled: Element = default, init: ToggleElement.() -> (Unit)) =
+        initAndAdd(ToggleElement(default, toggled), init)
+
+fun Containable.toggle(name: String, enabledMessage: String = "On", disabledMessage: String = "Off", init: ToggleElement.() -> (Unit)) =
+        initAndAdd(ToggleElement(name, enabledMessage, disabledMessage), init)
+
 fun <T : Element> Containable.addElement(element: T, init: T.() -> Unit) =
         addElement(initTag(element, init))
-
-fun <T : Element> Layout.dynamic(create: Layout.() -> T): Refreshing<T> {
-    return addElement(Refreshing(create))
-}
 
 @Deprecated("", ReplaceWith("element{} at x to y"))
 fun <T : Element> GridContainable.setElement(x: Int, y: Int, element: T, init: T.() -> Unit): T =
