@@ -1,0 +1,3 @@
+rootProject.name = 'guiy'
+
+if (rootProject.hasProperty("useLocalKotlinSpice") && useLocalKotlinSpice) includeBuild('../kotlinspice')
