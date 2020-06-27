@@ -2,19 +2,21 @@ package com.derongan.minecraft.guiy.kotlin_dsl
 
 import com.derongan.minecraft.guiy.gui.ClickEvent
 import com.derongan.minecraft.guiy.gui.Element
-import com.derongan.minecraft.guiy.gui.Layout
+import com.derongan.minecraft.guiy.gui.containers.Containable
+import com.derongan.minecraft.guiy.gui.containers.GridContainable
 import com.derongan.minecraft.guiy.gui.elements.ClickableElement
-import com.derongan.minecraft.guiy.gui.elements.containers.Containable
-import com.derongan.minecraft.guiy.gui.elements.containers.GridContainable
 import com.derongan.minecraft.guiy.gui.elements.containers.lists.ScrollingPallet
 import com.derongan.minecraft.guiy.gui.elements.lists.WrappedListElement
 import com.derongan.minecraft.guiy.gui.inputs.ToggleElement
+import com.derongan.minecraft.guiy.gui.layouts.Column
+import com.derongan.minecraft.guiy.gui.layouts.GridLayout
+import com.derongan.minecraft.guiy.gui.layouts.Row
 
 @DslMarker
 annotation class GuiyMarker
 
-fun guiyLayout(init: Layout.() -> Unit): Layout {
-    return initTag(Layout(), init)
+fun guiyLayout(init: GridLayout.() -> Unit): GridLayout {
+    return initTag(GridLayout(), init)
 }
 
 fun <T : Element> initTag(element: T, init: T.() -> Unit, addTo: MutableList<T>? = null): T {
@@ -29,8 +31,6 @@ fun <T : Element> Containable.initAndAdd(element: T, init: (T.() -> Unit)?): T {
     return element
 }
 
-infix fun <T : Element> T.with(init: T.() -> Unit): T = init().let { this }
-
 fun Containable.button(wrapped: Element, init: (ClickEvent) -> (Unit)) =
         addElement(ClickableElement(wrapped, init))
 
@@ -43,6 +43,14 @@ fun <T> Containable.wrappedList(
         list: MutableList<T>,
         init: (WrappedListElement<T>.() -> Unit)? = null
 ) = initAndAdd(WrappedListElement(width, height, list), init)
+
+fun Containable.column(
+        init: (Column.() -> Unit)? = null
+) = initAndAdd(Column(), init)
+
+fun Containable.row(
+        init: (Row.() -> Unit)? = null
+) = initAndAdd(Row(), init)
 
 fun Containable.toggle(default: Element, toggled: Element = default, init: ToggleElement.() -> (Unit)) =
         initAndAdd(ToggleElement(default, toggled), init)

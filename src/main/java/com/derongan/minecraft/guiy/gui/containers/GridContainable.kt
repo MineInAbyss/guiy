@@ -1,4 +1,4 @@
-package com.derongan.minecraft.guiy.gui.elements.containers
+package com.derongan.minecraft.guiy.gui.containers
 
 import com.derongan.minecraft.guiy.gui.Element
 

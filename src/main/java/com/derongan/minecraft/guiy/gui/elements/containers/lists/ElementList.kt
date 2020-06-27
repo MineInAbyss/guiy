@@ -1,7 +1,6 @@
 package com.derongan.minecraft.guiy.gui.elements.containers.lists
 
 import com.derongan.minecraft.guiy.gui.Element
-import com.derongan.minecraft.guiy.gui.elements.containers.Containable
 import com.derongan.minecraft.guiy.gui.elements.lists.ListContainable
 
 /**
@@ -24,9 +23,5 @@ open class ElementList(
 
     override fun removeElement(element: Element?) {
         element?.let { remove(element) }
-    }
-
-    override val innerList: Containable.(Int, Int) -> ListContainable<Element> = { width, height ->
-        ElementList(width, height, elements)
     }
 }

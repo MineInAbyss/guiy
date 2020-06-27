@@ -1,9 +1,9 @@
-package com.derongan.minecraft.guiy.gui.elements.containers
+package com.derongan.minecraft.guiy.gui.containers
 
 import com.derongan.minecraft.guiy.gui.Element
-import com.derongan.minecraft.guiy.gui.Layout
 import com.derongan.minecraft.guiy.gui.elements.dynamic.Mutating
 import com.derongan.minecraft.guiy.gui.elements.dynamic.Refreshing
+import com.derongan.minecraft.guiy.gui.layouts.GridLayout
 
 interface Containable {
     fun <T : Element> addElement(element: T): T
@@ -16,7 +16,7 @@ interface Containable {
     }
 
     @JvmDefault
-    fun <T : Element> refresing(create: Layout.() -> T): Refreshing<T> {
+    fun <T : Element> refresing(create: GridLayout.() -> T): Refreshing<T> {
         return addElement(Refreshing(create))
     }
 

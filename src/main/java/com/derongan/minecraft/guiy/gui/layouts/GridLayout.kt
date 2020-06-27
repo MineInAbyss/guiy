@@ -1,11 +1,18 @@
-package com.derongan.minecraft.guiy.gui.elements.containers.grids
+package com.derongan.minecraft.guiy.gui.layouts
 
 import com.derongan.minecraft.guiy.gui.Element
-import com.derongan.minecraft.guiy.gui.elements.containers.GridContainable
+import com.derongan.minecraft.guiy.gui.containers.GridContainable
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 
-abstract class GridContainableBiMap : GridContainable, BiMap<Pair<Int, Int>, Element> by HashBiMap.create() {
+/**
+ * An layout which contains other elements at specific locations. It forwards any clicks to
+ * *any* element that claims to be in an inventory slot, based on its position and size.
+ */
+open class GridLayout : Layout(), BiMap<Pair<Int, Int>, Element> by HashBiMap.create(), GridContainable {
+    override val children: List<Element> get() = this.values.toList()
+    override fun calculateDrawLocations() = this
+
     override fun <T : Element> setElement(x: Int, y: Int, element: T): T {
         this[x to y] = element
         return element
@@ -37,4 +44,6 @@ abstract class GridContainableBiMap : GridContainable, BiMap<Pair<Int, Int>, Ele
      * @return true if there is an element at this coordinate.
      */
     fun hasElement(x: Int, y: Int) = contains(x to y)
+
+    override fun toString() = "Layout(${dims.width} ${dims.height})"
 }

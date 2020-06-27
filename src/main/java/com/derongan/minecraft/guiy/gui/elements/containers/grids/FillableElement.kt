@@ -1,14 +1,14 @@
 package com.derongan.minecraft.guiy.gui.elements.containers.grids
 
 import com.derongan.minecraft.guiy.gui.Element
-import com.derongan.minecraft.guiy.gui.Layout
 import com.derongan.minecraft.guiy.gui.Size
 import com.derongan.minecraft.guiy.gui.Size.Companion.create
+import com.derongan.minecraft.guiy.gui.layouts.GridLayout
 
 /**
  * Element that supports having Elements added to it dynamically.
  */
-open class FillableElement(private val height: Int, private val width: Int) : Layout() {
+open class FillableElement(private val height: Int, private val width: Int) : GridLayout() {
     override val dims: Size get() = create(width, height)
 
     /**

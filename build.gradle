@@ -76,9 +76,10 @@ dependencies {
     implementation 'de.erethon:headlib:3.0.2'
     compileOnly 'org.spigotmc:spigot-api:1.15-R0.1-SNAPSHOT'
     implementation 'com.google.protobuf:protobuf-java:3.8.0'
-    implementation 'com.google.dagger:dagger:2.+'
+//    implementation 'com.google.dagger:dagger:2.+'
     compileOnly 'org.jetbrains:annotations:17.0.0'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.+'
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.+'
+    implementation 'no.tornado:tornadofx:1.7.20'
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens

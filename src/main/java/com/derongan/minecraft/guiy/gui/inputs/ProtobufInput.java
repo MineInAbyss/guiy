@@ -4,6 +4,7 @@ import com.derongan.minecraft.guiy.gui.*;
 import com.derongan.minecraft.guiy.gui.elements.ClickableElement;
 import com.derongan.minecraft.guiy.gui.elements.containers.grids.FillableElement;
 import com.derongan.minecraft.guiy.gui.elements.containers.singular.SwappableElement;
+import com.derongan.minecraft.guiy.gui.layouts.GridLayout;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.protobuf.Descriptors;
@@ -35,7 +36,7 @@ public class ProtobufInput<E extends Message> implements Element, Input<E> {
     private final SwappableElement swappableElement;
     private final FillableElement selectFieldFillable;
 
-    private final Layout base;
+    private final GridLayout base;
     private Consumer<E> consumer = a -> {
     };
 
@@ -65,7 +66,7 @@ public class ProtobufInput<E extends Message> implements Element, Input<E> {
         this.selectFieldFillable = new FillableElement(4, 4);
         this.swappableElement = new SwappableElement(selectFieldFillable);
 
-        base = new Layout();
+        base = new GridLayout();
 
         base.setElement(0, 0, swappableElement);
 

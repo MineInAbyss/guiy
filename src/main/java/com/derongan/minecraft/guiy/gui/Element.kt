@@ -10,6 +10,7 @@ import com.derongan.minecraft.guiy.kotlin_dsl.GuiyMarker
 @GuiyMarker
 interface Element {
     val dims: Size
+//    val constraints: Constraints get() = Constraints()
 
     /**
      * Draws the element to the provided [GuiRenderer].

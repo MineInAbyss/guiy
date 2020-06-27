@@ -1,7 +1,7 @@
 package com.derongan.minecraft.guiy;
 
 import com.derongan.minecraft.guiy.gui.ClickEvent;
-import com.derongan.minecraft.guiy.gui.GuiHolder;
+import com.derongan.minecraft.guiy.gui.holders.GuiHolder;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -9,7 +9,7 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.Plugin;
 
-import javax.inject.Inject;
+//import javax.inject.Inject;
 
 /**
  * Listener that listens for inventory click events and delegates to the {@link GuiHolder} if appropriate.
@@ -19,7 +19,7 @@ import javax.inject.Inject;
 public class GuiListener implements Listener {
     private final Plugin plugin;
 
-    @Inject
+    //    @Inject
     public GuiListener(Plugin plugin) {
         this.plugin = plugin;
     }

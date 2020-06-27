@@ -3,7 +3,7 @@ package com.derongan.minecraft.guiy.gui.elements.containers.lists
 import com.derongan.minecraft.guiy.gui.ClickEvent
 import com.derongan.minecraft.guiy.gui.Element
 import com.derongan.minecraft.guiy.gui.GuiRenderer
-import com.derongan.minecraft.guiy.gui.Layout
+import com.derongan.minecraft.guiy.gui.layouts.GridLayout
 import com.derongan.minecraft.guiy.helpers.offset
 import com.derongan.minecraft.guiy.helpers.toCell
 import com.derongan.minecraft.guiy.kotlin_dsl.guiyLayout
@@ -24,7 +24,7 @@ class ScrollingPallet(override val width: Int) : ElementList(width, 1) {
         Preconditions.checkArgument(width >= 3, "Width must be over 2 in order to include controls and tools")
     }
 
-    private val innerLayout: Layout = guiyLayout {
+    private val innerLayout: GridLayout = guiyLayout {
         HeadLib.WOODEN_ARROW_LEFT.toCell("Left").at(0, 0)
         HeadLib.WOODEN_ARROW_RIGHT.toCell("Right").at(this@ScrollingPallet.width - 1, 0)
     }

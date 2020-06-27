@@ -1,8 +1,6 @@
 package com.derongan.minecraft.guiy.gui.elements.lists
 
 import com.derongan.minecraft.guiy.gui.Element
-import com.derongan.minecraft.guiy.gui.elements.containers.Containable
-import com.derongan.minecraft.guiy.kotlin_dsl.wrappedList
 
 /**
  * An element which holds a mutable list of items with useful functionality like pagination from [ListContainable].
@@ -42,11 +40,4 @@ class WrappedListElement<T>(
     }
 
     private fun T.toElement() = elementCache.getOrPut(this, { convertBy(this) })
-
-    override val innerList: Containable.(Int, Int) -> ListContainable<T> = { width, height ->
-        wrappedList(width, height, this@WrappedListElement.list) {
-            convertBy = (this@WrappedListElement.convertBy)
-            filterBy = (this@WrappedListElement.filterBy)
-        }
-    }
 }
