@@ -3,7 +3,6 @@ plugins {
     id 'idea'
     id "maven-publish"
     id 'org.jetbrains.kotlin.jvm'
-    id 'com.jarnoharno.github-packages'
 }
 
 if (project.hasProperty("buildNo")) version += ".$buildNo"
@@ -15,12 +14,6 @@ java {
     withJavadocJar()
 }
 
-githubPackages {
-    repository = "MineInAbyss/guiy"
-    username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
-    accessToken = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
-}
-
 repositories {
     mavenCentral()
     maven { url 'https://hub.spigotmc.org/nexus/content/groups/public/' }
@@ -30,7 +23,14 @@ repositories {
 
 publishing {
     repositories {
-        maven githubPackages()
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/MineInAbyss/guiy")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
     publications {
         gpr(MavenPublication) {
