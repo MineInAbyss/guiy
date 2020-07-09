@@ -1,0 +1,8 @@
+pluginManagement{
+    plugins {
+        id 'org.jetbrains.kotlin.jvm' version "$kotlin_version"
+        id 'com.jarnoharno.github-packages' version '1.0.0'
+    }
+}
+
+rootProject.name = 'guiy'
