@@ -29,9 +29,7 @@ repositories {
 
 publishing {
     repositories {
-        maven {
-            maven githubPackages("MineInAbyss/guiy")
-        }
+        maven githubPackages("MineInAbyss/guiy")
     }
     publications {
         gpr(MavenPublication) {
