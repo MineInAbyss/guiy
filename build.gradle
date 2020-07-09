@@ -16,6 +16,7 @@ java {
 }
 
 githubPackages {
+    repository = "MineInAbyss/guiy"
     username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
     accessToken = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
 }
@@ -29,7 +30,7 @@ repositories {
 
 publishing {
     repositories {
-        maven githubPackages("MineInAbyss/guiy")
+        maven githubPackages()
     }
     publications {
         gpr(MavenPublication) {
