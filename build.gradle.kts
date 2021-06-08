@@ -38,3 +38,9 @@ dependencies {
 
     annotationProcessor("com.google.dagger:dagger-compiler:2.28.1")
 }
+
+publishing {
+    mineInAbyss(project) {
+        from(components["java"])
+    }
+}
