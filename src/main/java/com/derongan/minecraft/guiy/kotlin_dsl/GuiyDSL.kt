@@ -6,11 +6,11 @@ import com.derongan.minecraft.guiy.gui.layouts.HistoryGuiHolder
 @DslMarker
 annotation class GuiyMarker
 
-fun guiyLayout(init: Layout.() -> Unit): Layout {
+inline fun guiyLayout(init: Layout.() -> Unit): Layout {
     return initTag(Layout(), init)
 }
 
-fun <T : Element> initTag(element: T, init: T.() -> Unit, addTo: MutableList<T>? = null): T {
+inline fun <T : Element> initTag(element: T, init: T.() -> Unit, addTo: MutableList<T>? = null): T {
     element.init()
     addTo?.add(element)
     return element
